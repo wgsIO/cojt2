@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile project(':cojex')
+    implementation group: 'com.google.guava', name: 'guava', version: '12.0'
+}

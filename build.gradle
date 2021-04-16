@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'net.ltgt.apt-idea' version "0.21"
+}
+
+def projectGroup = 'com.github.walkgs.cojt'
+
+group = projectGroup
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+compileJava {
+    options.annotationProcessorPath = configurations.annotationProcessor
+}
+
+dependencies {
+    compile subprojects
+}
+
+allprojects {
+
+    apply plugin: 'net.ltgt.apt-idea'
+    apply plugin: 'maven'
+
+    group = projectGroup
+
+    afterEvaluate {
+
+        repositories {
+            mavenCentral()
+            maven { url = "https://jitpack.io" }
+        }
+
+        dependencies {
+            compileOnly 'org.projectlombok:lombok:1.18.16'
+            annotationProcessor 'org.projectlombok:lombok:1.18.16'
+        }
+
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    tasks.withType(Jar) {
+        setDestinationDir(file("$rootDir/build/"))
+    }
+
+}

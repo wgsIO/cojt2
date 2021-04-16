@@ -1,0 +1,8 @@
+rootProject.name = 'cojt2'
+
+include 'codit' //Codit = DI
+include 'cojut' //Cojut = Utilities
+include 'cojys' //Cojys = System
+include 'cojex' //Cojex = Exceptions
+include 'cojel' //Cojel = Experimental
+

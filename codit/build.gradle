@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation project(':cojut')
+    implementation project(':cojys')
+    implementation group: 'com.google.guava', name: 'guava', version: '12.0'
+
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    annotationProcessor group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+}

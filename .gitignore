@@ -1,0 +1,18 @@
+### IntelliJ
+.idea
+*.iml
+out
+gen
+jars
+/jars/*
+
+### Gradle
+.gradle
+/build/
+
+gradle-app.setting
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
