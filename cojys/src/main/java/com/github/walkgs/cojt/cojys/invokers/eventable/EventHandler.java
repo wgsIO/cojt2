@@ -29,9 +29,9 @@ public interface EventHandler {
         }
     }
 
-    void register(Class<?> event) throws RegisterFailedException;
+    void register(Class<?> event) throws BindException;
 
-    void register(Object event) throws RegisterFailedException;
+    void register(Object event) throws BindException;
 
     void unregister(Class<?> event) throws BindException;
 

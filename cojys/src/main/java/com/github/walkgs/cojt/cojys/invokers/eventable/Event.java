@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Event {
 
-
     //base Context<Class<?>, Object[], EventHandler> context
     //protected abstract void whenCalled(Context<Class<? extends Event>, Object[], EventHandler> context, int reasonId);
 

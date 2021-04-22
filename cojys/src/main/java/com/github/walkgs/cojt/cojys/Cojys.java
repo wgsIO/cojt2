@@ -201,25 +201,25 @@ public class Cojys {
                         private transient Binder<Object> events = new SingleBinder<>();
 
                         @Override
-                        public void register(final Class<?> event) throws RegisterFailedException {
+                        public void register(final Class<?> event) throws BindException {
                             try {
                                 if (!event.isAnnotationPresent(Event.class))
-                                    throw new RegisterFailedException("The class is not an event");
+                                    throw new BindException("The class is not an event");
                                 events.bind(event.newInstance());
                             } catch (IllegalAccessException | InstantiationException | BindException e) {
-                                throw new RegisterFailedException("It was not possible to register the event; Possible reasons: 'failed to initialize' or 'is already registered'");
+                                throw new BindException("It was not possible to register the event; Possible reasons: 'failed to initialize' or 'is already registered'");
                             }
                         }
 
                         @Override
-                        public void register(final Object event) throws RegisterFailedException {
+                        public void register(final Object event) throws BindException {
                             try {
                                 final Class<?> clazz = event.getClass();
                                 if (!clazz.isAnnotationPresent(Event.class))
-                                    throw new RegisterFailedException("The class is not an event");
+                                    throw new BindException("The class is not an event");
                                 events.bind(event);
                             } catch (BindException e) {
-                                throw new RegisterFailedException("It was not possible to register the event; Possible reasons: 'failed to initialize' or 'is already registered'");
+                                throw new BindException("It was not possible to register the event; Possible reasons: 'failed to initialize' or 'is already registered'");
                             }
                         }
 
