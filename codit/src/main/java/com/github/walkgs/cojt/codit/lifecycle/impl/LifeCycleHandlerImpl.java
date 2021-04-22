@@ -12,7 +12,7 @@ import lombok.Getter;
 import java.lang.instrument.IllegalClassFormatException;
 import java.util.function.Consumer;
 
-@Getter
+
 public class LifeCycleHandlerImpl implements LifeCycleHandler, Exchanger<LifeCycleInstaller> {
 
     private static final String INCORRECT_LIFE_STATE_MESSAGE = "Could not load, reason: The state of life is incorrect.";
@@ -26,6 +26,7 @@ public class LifeCycleHandlerImpl implements LifeCycleHandler, Exchanger<LifeCyc
 
     };
 
+    @Getter
     private final LifeCycleLoaderConfiguration configuration = DEFAULT_CONFIGURATION;
     private final LifeCycleInstaller installer = new LifeCycleInstallerImpl();
 

@@ -6,12 +6,18 @@ import com.github.walkgs.cojt.codit.lifecycle.notifiers.StateChangeNotification;
 import com.github.walkgs.cojt.cojys.Cojys;
 import com.github.walkgs.cojt.cojys.invokers.post.Post;
 import com.github.walkgs.cojt.cojys.invokers.posture.Posture;
+import com.github.walkgs.cojt.cojys.loader.CJY2Finder;
+import com.github.walkgs.cojt.cojys.loader.CJY2Loader;
+import com.github.walkgs.cojt.cojys.loader.impl.CJY2FinderImpl;
+import com.github.walkgs.cojt.cojys.loader.impl.CJY2LoaderImpl;
 import com.github.walkgs.cojt.cojys.properties.Exchanger;
 import com.github.walkgs.cojt.cojys.services.Services;
 import javafx.application.Preloader;
 import lombok.RequiredArgsConstructor;
 
 import java.net.BindException;
+import java.util.Map;
+import java.util.Set;
 
 @LifeCycle
 @RequiredArgsConstructor
@@ -49,6 +55,17 @@ public class Codit {
     }
 
     public static void main(String[] args) throws Exception {
+
+        final CJY2Loader cjy2Loader = new CJY2LoaderImpl();
+        try (final CJY2Finder finder = new CJY2FinderImpl(cjy2Loader).open()){
+            final Map<String, Set<Class<?>>> classes = finder.findClasses(Package.getPackages());
+            classes.forEach((key, value) -> System.out.println("Package: " + key + " \n* Classes: " + value));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (true)
+            return;
         //final StrategyHandlerCreator strategyExecutorCreator = Cojys.getSystemLocalServices().get("StrategyHandlerCreator");
         //System.out.println("CREATOR: " + strategyExecutorCreator);
         //final StrategyHandler<Object, Object> strategyHandler = strategyExecutorCreator.create();

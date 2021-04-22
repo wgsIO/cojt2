@@ -3,6 +3,7 @@ package com.github.walkgs.cojt.codit.lifecycle;
 import com.sun.deploy.association.RegisterFailedException;
 
 import java.lang.instrument.IllegalClassFormatException;
+import java.net.BindException;
 
 public interface LifeCycleInstaller {
 
@@ -18,8 +19,8 @@ public interface LifeCycleInstaller {
 
     LifeDescription findDescription(Object instance);
 
-    void installEvents(LifeDescription description, Class<?>... events) throws RegisterFailedException;
+    void installEvents(LifeDescription description, Class<?>... events) throws BindException;
 
-    void installEvents(LifeDescription description, Object... events) throws RegisterFailedException;
+    void installEvents(LifeDescription description, Object... events) throws BindException;
 
 }

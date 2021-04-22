@@ -110,7 +110,7 @@ class LifeCycleInstallerImpl implements LifeCycleInstaller {
     }
 
     @Override
-    public void installEvents(final LifeDescription description, final Class<?>... events) throws RegisterFailedException {
+    public void installEvents(final LifeDescription description, final Class<?>... events) throws BindException {
         final Life life = ((LifeDescriptionImpl) description).life;
         if (!(life instanceof LifeImpl))
             throw new IllegalStateException("");
@@ -120,7 +120,7 @@ class LifeCycleInstallerImpl implements LifeCycleInstaller {
     }
 
     @Override
-    public void installEvents(final LifeDescription description, final Object... events) throws RegisterFailedException {
+    public void installEvents(final LifeDescription description, final Object... events) throws BindException {
         final Life life = ((LifeDescriptionImpl) description).life;
         if (!(life instanceof LifeImpl))
             throw new IllegalStateException("");
