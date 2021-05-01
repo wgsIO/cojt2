@@ -1,6 +1,5 @@
 package com.github.walkgs.cojt.cojys.services.binder.data;
 
-import com.github.walkgs.cojt.cojys.services.abs.AbstractServices;
 import com.github.walkgs.cojt.cojys.services.binder.Binder;
 import com.google.common.collect.UnmodifiableIterator;
 import lombok.AccessLevel;

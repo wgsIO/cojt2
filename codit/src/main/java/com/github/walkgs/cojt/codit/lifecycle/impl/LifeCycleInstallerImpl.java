@@ -13,7 +13,6 @@ import com.github.walkgs.cojt.cojys.services.binder.Binder;
 import com.github.walkgs.cojt.cojys.services.binder.data.Binding;
 import com.github.walkgs.cojt.cojys.services.binder.data.SingleBinder;
 import com.google.common.collect.UnmodifiableIterator;
-import com.sun.deploy.association.RegisterFailedException;
 import lombok.NonNull;
 
 import java.lang.instrument.IllegalClassFormatException;

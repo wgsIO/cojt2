@@ -1,7 +1,5 @@
 package com.github.walkgs.cojt.codit.lifecycle;
 
-import com.sun.deploy.association.RegisterFailedException;
-
 import java.lang.instrument.IllegalClassFormatException;
 import java.net.BindException;
 

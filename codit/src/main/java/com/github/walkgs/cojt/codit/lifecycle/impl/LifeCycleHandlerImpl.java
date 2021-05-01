@@ -68,6 +68,7 @@ public class LifeCycleHandlerImpl implements LifeCycleHandler, Exchanger<LifeCyc
     }
 
     @Override
-    public void toExchange(final LifeCycleInstaller object, final String message) {}
+    public void toExchange(final LifeCycleInstaller object, final String message) {
+    }
 
 }

@@ -11,21 +11,10 @@ import java.util.Set;
 
 public interface CJY2Finder extends Closeable {
 
-    Class<?> findClass(String name) throws ClassNotFoundException;
-    Map<String, Set<Class<?>>> findClasses(String... packagesName) throws IOException, ClassNotFoundException;
-    Map<String, Set<Class<?>>> findClasses(Package... packages) throws IOException, ClassNotFoundException;
-
-    Map<String, Set<Class<?>>> findClasses(String packageName, boolean convert) throws IOException, ClassNotFoundException;
-    Map<String, Set<Class<?>>> findClasses(File directory, String packageName) throws IOException, ClassNotFoundException;
-
-    CJY2Finder open();
-    void close();
-
-    boolean isOpened();
-
     static URLClassLoader resolve(File[] files) {
         return resolve(files, null);
     }
+
     static URLClassLoader resolve(File[] files, ClassLoader parent) {
         try {
             final URL[] urls = new URL[files.length];
@@ -36,5 +25,21 @@ public interface CJY2Finder extends Closeable {
             return null;
         }
     }
+
+    Class<?> findClass(String name) throws ClassNotFoundException;
+
+    Map<String, Set<Class<?>>> findClasses(String... packagesName) throws IOException, ClassNotFoundException;
+
+    Map<String, Set<Class<?>>> findClasses(Package... packages) throws IOException, ClassNotFoundException;
+
+    Map<String, Set<Class<?>>> findClasses(String packageName, boolean convert) throws IOException, ClassNotFoundException;
+
+    Map<String, Set<Class<?>>> findClasses(File directory, String packageName) throws IOException, ClassNotFoundException;
+
+    CJY2Finder open();
+
+    void close();
+
+    boolean isOpened();
 
 }

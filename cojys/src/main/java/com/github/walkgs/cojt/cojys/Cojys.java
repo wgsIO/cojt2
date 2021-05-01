@@ -17,7 +17,6 @@ import com.github.walkgs.cojt.cojys.services.binder.data.Binding;
 import com.github.walkgs.cojt.cojys.services.binder.data.SingleBinder;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.UnmodifiableIterator;
-import com.sun.deploy.association.RegisterFailedException;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
@@ -56,7 +55,7 @@ public class Cojys {
                         }
 
                         @Override
-                        public boolean register(final Object strategy) throws BindException {
+                        public boolean register(final Object strategy) {
                             try {
                                 final Class<?> clazz = strategy.getClass();
                                 checkIsStrategy(clazz);

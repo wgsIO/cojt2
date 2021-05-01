@@ -68,7 +68,7 @@ public class Codit {
             return;
 
         final CJY2Loader cjy2Loader = new CJY2LoaderImpl();
-        try (final CJY2Finder finder = new CJY2FinderImpl(cjy2Loader).open()){
+        try (final CJY2Finder finder = new CJY2FinderImpl(cjy2Loader).open()) {
             final Map<String, Set<Class<?>>> classes = finder.findClasses(Package.getPackages());
             classes.forEach((key, value) -> System.out.println("Package: " + key + " \n* Classes: " + value));
         } catch (ClassNotFoundException e) {
@@ -90,7 +90,7 @@ public class Codit {
         handler.load(life, $ -> {
             //System.out.println("LOADED");
         }, $ -> {
-           // System.out.println("COMPLETE");
+            // System.out.println("COMPLETE");
         });
         handler.unload(life, $ -> {
             //System.out.println("UNLOADED");
