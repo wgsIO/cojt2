@@ -45,11 +45,9 @@ public class Cojys {
                         @Override
                         public boolean register(final Class<?> strategy) {
                             try {
-                                System.out.println("REGISTRED1");
                                 checkIsStrategy(strategy);
                                 final Strategy annotation = strategy.getAnnotation(Strategy.class);
                                 strategies.bind(strategy.newInstance(), annotation.name());
-                                System.out.println("REGISTRED");
                                 return true;
                             } catch (IllegalAccessException | InstantiationException | BindException e) {
                                 return false;
@@ -63,7 +61,6 @@ public class Cojys {
                                 checkIsStrategy(clazz);
                                 final Strategy annotation = clazz.getAnnotation(Strategy.class);
                                 strategies.bind(strategy, annotation.name());
-                                System.out.println("REGISTRED");
                                 return true;
                             } catch (BindException e) {
                                 return false;
@@ -113,7 +110,6 @@ public class Cojys {
                                         for (Method method : methods) {
                                             if (!method.isAnnotationPresent(Post.class))
                                                 continue;
-                                            System.out.print("STRATEGIA OK");
                                             //final List<Class<?>> params = Arrays.asList(method.getParameterTypes());
                                             //if (!params.contains(context[0].getClass()))
                                             //    continue;
