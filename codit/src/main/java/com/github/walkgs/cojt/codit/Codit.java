@@ -2,14 +2,20 @@ package com.github.walkgs.cojt.codit;
 
 import com.github.walkgs.cojt.codit.injector.Inject;
 import com.github.walkgs.cojt.codit.lifecycle.LifeCycle;
+import com.github.walkgs.cojt.codit.lifecycle.LifeCycleInstaller;
+import com.github.walkgs.cojt.codit.lifecycle.LifeDescription;
 import com.github.walkgs.cojt.codit.lifecycle.impl.LifeCycleHandlerImpl;
 import com.github.walkgs.cojt.cojys.Cojys;
 import com.github.walkgs.cojt.cojys.invokers.post.Post;
 import com.github.walkgs.cojt.cojys.invokers.posture.Posture;
+import com.github.walkgs.cojt.cojys.invokers.strategies.StrategyHandler;
+import com.github.walkgs.cojt.cojys.invokers.strategies.setup.Strategy;
 import com.github.walkgs.cojt.cojys.properties.Name;
+import com.github.walkgs.cojt.cojys.services.Service;
 import com.github.walkgs.cojt.cojys.services.Services;
 import lombok.RequiredArgsConstructor;
 
+import java.lang.instrument.IllegalClassFormatException;
 import java.net.BindException;
 
 @LifeCycle
@@ -30,7 +36,28 @@ public class Codit {
 
     private Pedros pedros = new Pedros();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalClassFormatException {
+        final Codit codit = new Codit("pedro");
+        final LifeCycleHandlerImpl tempHandler = new LifeCycleHandlerImpl();
+        final LifeCycleInstaller tempInstaller = tempHandler.request("installer");
+        final LifeDescription description = tempInstaller.install(codit, TestStrategy.class);
+        tempHandler.load(description.getLife(), load -> {
+            System.out.println("LOAD");
+        }, start -> {
+            System.out.println("START");
+        });
+
+        /*final CJY2Loader cjy2Loader = new CJY2LoaderImpl();
+        try (final CJY2Finder finder = new CJY2FinderImpl(cjy2Loader).open()) {
+            final Map<String, Set<Class<?>>> classes = finder.findClasses(Package.getPackages());
+            classes.forEach((key, value) -> System.out.println("Package: " + key + " \n* Classes: " + value));
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+         */
+        if (true)
+            return;
+
         /**
 
         Set<String> packages = new HashSet<String>();
@@ -96,6 +123,17 @@ public class Codit {
         });
          */
 
+
+    }
+
+    @Service
+    @Strategy(name = "TestStrategy")
+    public class TestStrategy {
+
+        @Post(type = StrategyHandler.SETUP)
+        private void setup() {
+            System.out.println("EXECUTED");
+        }
 
     }
 

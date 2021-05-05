@@ -1,7 +1,6 @@
 package com.github.walkgs.cojt.cojys.loader.impl;
 
 import com.github.walkgs.cojt.cojys.loader.CJY2Finder;
-import com.github.walkgs.cojt.cojys.loader.CJY2Loader;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +15,7 @@ public class CJY2FinderImpl implements CJY2Finder {
 
     private static final FileFilter CLASS_FILTER = jar -> jar.getName().toLowerCase().endsWith(".class");
 
-    private final CJY2Loader loader;
+    private final ClassLoader loader;
     private ClassLoader oldLoader;
 
     public CJY2FinderImpl() {
@@ -106,7 +105,7 @@ public class CJY2FinderImpl implements CJY2Finder {
             throw new IllegalStateException();
         final Thread thread = Thread.currentThread();
         oldLoader = thread.getContextClassLoader();
-        thread.setContextClassLoader((ClassLoader) loader);
+        thread.setContextClassLoader(loader);
         return this;
     }
 
