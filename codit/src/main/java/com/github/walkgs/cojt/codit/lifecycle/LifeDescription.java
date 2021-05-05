@@ -12,5 +12,4 @@ public interface LifeDescription {
 
     Life getLife();
 
-
 }

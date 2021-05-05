@@ -106,16 +106,17 @@ public class Cojys {
                                 if (binding.getName().equals(name)) {
                                     final Class<?> clazz = binding.getBinding().getClass();
                                     final Method[] methods = clazz.getDeclaredMethods();
-                                    if (context.length > 0)
+                                    if (context.length > 0) {
                                         for (Method method : methods) {
                                             if (!method.isAnnotationPresent(Post.class))
                                                 continue;
-                                            final List<Class<?>> params = Arrays.asList(method.getParameterTypes());
-                                            if (!params.contains(context[0].getClass()))
-                                                continue;
+                                            //final List<Class<?>> params = Arrays.asList(method.getParameterTypes());
+                                            //if (!params.contains(context[0].getClass()))
+                                            //    continue;
                                             Powders.invoke(binding.getBinding(), method, SETUP, context[0]);
-                                            return;
                                         }
+                                        return;
+                                    }
                                     Powders.invoke(binding.getBinding(), methods, SETUP);
                                     return;
                                 }
